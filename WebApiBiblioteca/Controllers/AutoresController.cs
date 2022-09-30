@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WebApiBiblioteca.Models;
 
 namespace WebApiBiblioteca.Controllers;
 
@@ -6,14 +7,26 @@ namespace WebApiBiblioteca.Controllers;
 [Route("api/autores")]
 public class AutoresController : ControllerBase
 {
+    private readonly AppDbContext db;
+
+    public AutoresController(AppDbContext db)
+    {
+        this.db = db;
+    }
+
     // https://localhost:7248/api/autores
     [HttpGet]
     public IEnumerable<Autor> Get()
     {
-        return new List<Autor>() {
-            new Autor {Id=1, Nombre="bidkar"},
-            new Autor {Id=2, Nombre="melisa"},
-            new Autor {Id=3, Nombre="ricardo"}
-        };
+        return db.Autores.ToList();
+    }
+
+    [HttpPost]
+    public ActionResult<Autor> Post(Autor autor)
+    {
+        db.Autores.Add(autor);
+        db.SaveChanges();
+
+        return Ok(autor);
     }
 }

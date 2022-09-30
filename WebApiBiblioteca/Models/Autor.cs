@@ -1,4 +1,4 @@
-namespace WebApiBiblioteca;
+namespace WebApiBiblioteca.Models;
 
 public class Autor
 {
