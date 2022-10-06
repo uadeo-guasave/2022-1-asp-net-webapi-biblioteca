@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebApiBiblioteca.Models;
 
 namespace WebApiBiblioteca.Controllers;
@@ -16,16 +17,17 @@ public class AutoresController : ControllerBase
 
     // https://localhost:7248/api/autores
     [HttpGet]
-    public IEnumerable<Autor> Get()
+    public async Task<ActionResult<IEnumerable<Autor>>> Get()
     {
-        return db.Autores.ToList();
+        var autores = await db.Autores.ToListAsync();
+        return autores;
     }
 
     [HttpPost]
-    public ActionResult<Autor> Post(Autor autor)
+    public async Task<ActionResult<Autor>> Post(Autor autor)
     {
-        db.Autores.Add(autor);
-        db.SaveChanges();
+        await db.Autores.AddAsync(autor);
+        await db.SaveChangesAsync();
 
         return Ok(autor);
     }
