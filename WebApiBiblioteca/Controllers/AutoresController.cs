@@ -31,4 +31,39 @@ public class AutoresController : ControllerBase
 
         return Ok(autor);
     }
+
+    [Route("{id:int}")] // api/autores/id
+    [HttpPut] // api/autores/4289  id = 4289
+    public async Task<ActionResult> Update(Autor autor, int id)
+    {
+        if (id != autor.Id)
+        {
+            return BadRequest("El Id de la URL no coincide con el Id de Autor");
+        }
+        var existe = await db.Autores.AnyAsync(a => a.Id == id);
+        if (!existe)
+        {
+            return NotFound();
+        }
+
+        db.Autores.Update(autor);
+        await db.SaveChangesAsync();
+        return Ok();
+    }
+
+    [Route("{id:int}")]
+    [HttpDelete]
+    public async Task<ActionResult> Delete(int id)
+    {
+        var existe = await db.Autores.AnyAsync(a => a.Id == id);
+        if (!existe)
+        {
+            return NotFound();
+        }
+
+        db.Autores.Remove(new Autor { Id = id });
+        await db.SaveChangesAsync();
+        return Ok();
+
+    }
 }
