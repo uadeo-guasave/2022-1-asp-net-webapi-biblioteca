@@ -19,7 +19,7 @@ public class AutoresController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Autor>>> Get()
     {
-        var autores = await db.Autores.ToListAsync();
+        var autores = await db.Autores.Include(a => a.Libros).ToListAsync();
         return autores;
     }
 
