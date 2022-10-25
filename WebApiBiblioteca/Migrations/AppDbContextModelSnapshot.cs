@@ -30,6 +30,23 @@ namespace WebApiBiblioteca.Migrations
                     b.ToTable("Autores");
                 });
 
+            modelBuilder.Entity("WebApiBiblioteca.Models.Editorial", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Domicilio")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Editoriales");
+                });
+
             modelBuilder.Entity("WebApiBiblioteca.Models.Libro", b =>
                 {
                     b.Property<int>("Id")
@@ -42,12 +59,17 @@ namespace WebApiBiblioteca.Migrations
                     b.Property<int>("Edicion")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("EditorialId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Titulo")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AutorId");
+
+                    b.HasIndex("EditorialId");
 
                     b.ToTable("Libros");
                 });
@@ -60,10 +82,23 @@ namespace WebApiBiblioteca.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("WebApiBiblioteca.Models.Editorial", "Editorial")
+                        .WithMany("Libros")
+                        .HasForeignKey("EditorialId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Autor");
+
+                    b.Navigation("Editorial");
                 });
 
             modelBuilder.Entity("WebApiBiblioteca.Models.Autor", b =>
+                {
+                    b.Navigation("Libros");
+                });
+
+            modelBuilder.Entity("WebApiBiblioteca.Models.Editorial", b =>
                 {
                     b.Navigation("Libros");
                 });

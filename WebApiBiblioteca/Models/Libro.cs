@@ -7,4 +7,6 @@ public class Libro
     public int Edicion { get; set; }
     public int AutorId { get; set; }
     public Autor Autor { get; set; }
+    public int EditorialId { get; set; }
+    public Editorial Editorial { get; set; }
 }

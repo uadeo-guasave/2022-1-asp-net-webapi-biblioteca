@@ -17,3 +17,7 @@ on libros.AutorId = Autores.Id;
 select * from autores
 left join libros
 on Autores.id = Libros.AutorId;
+
+-- eliminar registros de la tabla libros para realizar las modificaiones
+-- de la estructura desde la migración 20221025135225_CreateTableEditorial
+delete from libros;
