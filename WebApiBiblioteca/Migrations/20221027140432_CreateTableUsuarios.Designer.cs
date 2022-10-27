@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApiBiblioteca;
 
@@ -10,32 +11,13 @@ using WebApiBiblioteca;
 namespace WebApiBiblioteca.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221027140432_CreateTableUsuarios")]
+    partial class CreateTableUsuarios
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.9");
-
-            modelBuilder.Entity("WebApiBiblioteca.Models.Alumno", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Apellidos")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Matricula")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Nombres")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Alumnos");
-                });
 
             modelBuilder.Entity("WebApiBiblioteca.Models.Autor", b =>
                 {
@@ -49,26 +31,6 @@ namespace WebApiBiblioteca.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Autores");
-                });
-
-            modelBuilder.Entity("WebApiBiblioteca.Models.Docente", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Apellidos")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Nombres")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Rfc")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Docentes");
                 });
 
             modelBuilder.Entity("WebApiBiblioteca.Models.Editorial", b =>
