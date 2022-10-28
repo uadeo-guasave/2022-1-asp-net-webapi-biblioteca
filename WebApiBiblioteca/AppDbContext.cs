@@ -16,4 +16,5 @@ public class AppDbContext : DbContext
     public DbSet<Usuario> Usuarios { get; set; }
     public DbSet<Docente> Docentes { get; set; }
     public DbSet<Alumno> Alumnos { get; set; }
+    public DbSet<Prestamo> Prestamos { get; set; }
 }

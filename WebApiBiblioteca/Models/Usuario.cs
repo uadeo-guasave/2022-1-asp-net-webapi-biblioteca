@@ -9,5 +9,5 @@ public class Usuario
     public string Recordatorio { get; set; }
     public string Nombres { get; set; }
     public string Apellidos { get; set; }
-    // public List<Prestamo> Prestamos { get; set; }
+    public List<Prestamo> Prestamos { get; set; }
 }

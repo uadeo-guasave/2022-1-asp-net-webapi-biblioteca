@@ -8,4 +8,5 @@ public class Ejemplar
     public Double Costo { get; set; }
     public string Condiciones { get; set; }
     public Libro Libro { get; set; }
+    public List<Prestamo> Prestamos { get; set; }
 }
