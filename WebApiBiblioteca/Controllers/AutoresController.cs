@@ -5,7 +5,7 @@ using WebApiBiblioteca.Models;
 namespace WebApiBiblioteca.Controllers;
 
 [ApiController]
-[Route("api/autores")]
+[Route("api/autores")] // https://tusitio.com/api/autores
 public class AutoresController : ControllerBase
 {
     private readonly AppDbContext db;
@@ -32,8 +32,8 @@ public class AutoresController : ControllerBase
         return Ok(autor);
     }
 
-    [Route("{id:int}")] // api/autores/id
-    [HttpPut] // api/autores/4289  id = 4289
+    // [Route("{id:int}")] // https://tusition.com/api/autores/id
+    [HttpPut("{id:int}")] // api/autores/4289  id = 4289
     public async Task<ActionResult> Update(Autor autor, int id)
     {
         if (id != autor.Id)
@@ -51,8 +51,8 @@ public class AutoresController : ControllerBase
         return Ok();
     }
 
-    [Route("{id:int}")]
-    [HttpDelete]
+    // [Route("{id:int}")]
+    [HttpDelete("{id:int}")]
     public async Task<ActionResult> Delete(int id)
     {
         var existe = await db.Autores.AnyAsync(a => a.Id == id);
