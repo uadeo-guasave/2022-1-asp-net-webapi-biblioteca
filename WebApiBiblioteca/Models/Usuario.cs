@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApiBiblioteca.Models;
 
@@ -25,5 +26,7 @@ public class Usuario
     [Required]
     [MaxLength(50)]
     public string Apellidos { get; set; }
+
+    [NotMapped]
     public List<Prestamo> Prestamos { get; set; }
 }

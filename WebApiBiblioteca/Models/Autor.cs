@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebApiBiblioteca.Models;
 
@@ -9,5 +10,7 @@ public class Autor
     [Required]
     [MaxLength(100)]
     public string Nombre { get; set; }
+
+    [NotMapped]
     public List<Libro> Libros { get; set; }
 }
